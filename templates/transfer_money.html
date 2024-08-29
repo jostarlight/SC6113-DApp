@@ -1,0 +1,59 @@
+<h2>Welcome to transfer money v1</h2>
+
+<input type="text" id="payer_id" placeholder="Please enter payer address">
+<br><br>
+<input type="text" id="payee_id" placeholder="Please enter payee address">
+<br><br>
+<input type="number" id="amount_id" placeholder="Please enter amount">
+<br><br>
+<button class="btn" onclick="transfer()">Transfer Money</button>
+<br><br>
+<button class="btn" onclick="view_transaction()">View Transaction</button>
+<p id="view_payer_id"></p>
+<p id="view_payee_id"></p>
+<p id="view_amount_id"></p>
+<script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+<script>
+    const contract_address="0x777a70109e509248B682D5F5A95812aaC6b52a2d";
+    const contractABI=[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amount_to_tranfer",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "payer_add",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "payee_add",
+				"type": "address"
+			}
+		],
+		"name": "weixin",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+];
+    const web3=new Web3(Web3.givenProvider);
+    console.log(web3);
+    const contract =new web3.eth.Contract(contractABI,contract_address);
+    console.log(contract);
+    async function transfer() {
+        
+    }
+
+    async function view_transaction() {
+        
+    }
+</script>
