@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +33,8 @@
             color: #333;
         }
 
-        input, button {
+        input,
+        button {
             width: 100%;
             padding: 10px;
             margin-top: 10px;
@@ -67,7 +69,8 @@
                 font-size: 20px;
             }
 
-            input, button {
+            input,
+            button {
                 font-size: 14px;
             }
 
@@ -77,6 +80,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2>Welcome to store money</h2>
@@ -85,11 +89,14 @@
         <button class="btn" onclick="getValue()">Get Stored Value</button>
         <p id="storedValue"></p>
         <p id="status"></p>
-    </div>
 
+        <button onclick="window.location.href='/'">Go Back to Home</button>
+
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
     <script>
-        const contractAddress = '0x9Fe3C923CCdb28bCEEf34EA7f181e49e23b1a3f1';
+        const contractAddress = '0xcf39Fd9C6FBF9a7E031FE041b27cbfc4eE9AF519';
         const contractABI = [
             {
                 "inputs": [
@@ -127,7 +134,7 @@
             const value = document.getElementById('moneyInput').value;
             console.log("value: " + value);
             console.log("accounts[0] " + accounts[0]);
-            await contract.methods.store_m(value).send({from: accounts[0]});
+            // await contract.methods.store_m(value).send({ from: accounts[0] });
         }
 
         async function getValue() {
@@ -137,4 +144,5 @@
         }
     </script>
 </body>
+
 </html>
