@@ -1,44 +1,63 @@
-<h2>Ethereum DApp</h2>
-<input type="number" id="moneyInput" placeholder="Enter amount to store">
-<button class="btn" onclick="storeValue()">Store Value</button>
-<button class="btn" onclick="getValue()">Get Stored Value</button>
-<p id="storedValue"></p>
-<p id="status"></p>
-
-<script src=" https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
-<script>
-    const contractAddress = '0x9Fe3C923CCdb28bCEEf34EA7f181e49e23b1a3f1';
-    const contractABI = [
-        {
-            "inputs": [{"internalType": "uint256","name": "num","type": "uint256"}],
-            "name": "store_m",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "view_m",
-            "outputs": [{"internalType": "uint256","name": "","type": "uint256"}],
-            "stateMutability": "view",
-            "type": "function"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAPP - Store and Transfer Money</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
-    ];
 
-    const web3 = new Web3(Web3.givenProvider);
-    const contract = new web3.eth.Contract(contractABI, contractAddress);
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 600px;
+        }
 
-    async function storeValue() {
-        const accounts = await web3.eth.requestAccounts();
-        const value = document.getElementById('moneyInput').value;
-        console.log("value: " + value);
-        console.log("accounts[0] " + accounts[0]);
-        await contract.methods.store_m(value).send({from: accounts[0]});
-    }
+        h2 {
+            color: #333;
+            margin-bottom: 30px;
+        }
 
-    async function getValue() {
-        const storedValue = await contract.methods.view_m().call();
-        console.log("stored value " + storedValue);
-        document.getElementById('storedValue').innerText = "Stored Value: " + storedValue;
-    }
-</script>
+        form {
+            margin-bottom: 18px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome to DAPP - Store and Transfer Money</h2>
+        <form action="/store_money" method="post">
+            <input type="submit" value="Store Money" class="btn">
+        </form>
+        <form action="/transfer_money" method="post">
+            <input type="submit" value="Transfer Money" class="btn">
+        </form>
+    </div>
+</body>
+</html>
